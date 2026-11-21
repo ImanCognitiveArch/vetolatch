@@ -23,3 +23,5 @@ jobs:
         run: python -m build
       - name: Check distributions
         run: python -m twine check dist/*
+      - name: Inspect built public/private boundary
+        run: python scripts/check_distribution_boundary.py

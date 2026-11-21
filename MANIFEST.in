@@ -1,0 +1,4 @@
+# Role: make public-source examples and validation reproducible from the sdist.
+include examples/*.py
+include scripts/*.py
+include tests/*.py

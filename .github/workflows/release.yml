@@ -4,6 +4,9 @@ on:
   release:
     types: [published]
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -13,11 +16,15 @@ jobs:
         with:
           python-version: "3.11"
       - name: Install build tools
-        run: python -m pip install build twine
+        run: python -m pip install -e ".[dev]"
+      - name: Test approval and isolation contracts
+        run: python -m pytest
       - name: Build distributions
         run: python -m build
       - name: Validate distributions
         run: python -m twine check dist/*
+      - name: Inspect built public/private boundary
+        run: python scripts/check_distribution_boundary.py
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:

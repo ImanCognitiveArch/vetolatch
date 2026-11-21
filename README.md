@@ -1,5 +1,14 @@
 # VetoLatch
 
+[![Tests](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/test.yml)
+[![Core boundary checks](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/boundary.yml/badge.svg?branch=main)](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/boundary.yml)
+
+**Release candidate: `0.4.0a1`.** Public PyPI publication is pending. A live PyPI
+version badge will be added after the package actually exists there. This
+repository remains private staging; workflow badges require repository access.
+The boundary check reports `FORBIDDEN=[]` only when its wheel/sdist checks pass;
+it is not a security certification or proof against every possible disclosure.
+
 > **AI may propose. Humans retain authority.**
 
 **VetoLatch** is a local-first human-approval and governance primitive for AI-agent workflows. It is the public governance boundary extracted from the private **UniversalMind** cognitive-runtime research architecture.
@@ -36,7 +45,8 @@ The invariant is deliberately simple:
 ## 30-second quickstart
 
 ```bash
-pip install vetolatch
+# From the reviewed source checkout (public PyPI release pending):
+python -m pip install .
 vetolatch doctor
 ```
 
@@ -139,6 +149,30 @@ python examples/fintech_refund.py
 ```
 
 The example is deliberately a mock authorization flow. No bank API is called and no funds move.
+
+## Tool-calling example: human approval before dispatch
+
+```bash
+python examples/tool_calling.py
+```
+
+```python
+@veto_gate
+def drop_table(*, table):
+    ...
+```
+
+The decorator is defined in the example, not exported by the SDK. The complete
+example accepts a standard function-call payload (`name` plus JSON `arguments`),
+freezes the arguments, creates a real pending review, and asks a human to type
+`approve` or `reject`. Only explicit approval dispatches the tool. Any other
+answer blocks execution. No LLM, LangGraph installation, or API key is needed.
+
+The external adapter performs real SQL against a disposable in-memory SQLite
+database and allows only the `demo` table. It never contacts a persistent
+database. VetoLatch itself continues to record decisions and receipts only.
+This synchronous demo is not an authenticated production approval adapter.
+Adapter tests verify blocked calls, exact argument dispatch, and audit identity.
 
 ## Licensing
 
