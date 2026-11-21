@@ -1,0 +1,62 @@
+[build-system]
+requires = ["setuptools>=77.0.3", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "universalmind"
+version = "0.4.0a1"
+description = "Human-governed approval and audit boundaries for AI agent actions."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "BUSL-1.1"
+license-files = ["LICENSE", "NOTICE.md"]
+authors = [
+  { name = "Iman Khorami" }
+]
+maintainers = [
+  { name = "Iman Khorami" }
+]
+keywords = [
+  "ai-governance",
+  "human-in-the-loop",
+  "ai-agents",
+  "auditability",
+  "approval-gate",
+  "ai-safety"
+]
+dependencies = [
+  "fastapi>=0.127,<1.0",
+  "pydantic>=2.10,<3.0",
+  "uvicorn>=0.40,<1.0"
+]
+
+[project.optional-dependencies]
+dev = [
+  "build>=1.2",
+  "httpx>=0.27",
+  "pytest>=8.0",
+  "twine>=5.0"
+]
+
+[project.urls]
+Homepage = "https://imancognitivearch.github.io/universalmind-showcase/"
+Documentation = "https://github.com/ImanCognitiveArch/universalmind-sdk"
+Repository = "https://github.com/ImanCognitiveArch/universalmind-sdk"
+"Commercial Licensing" = "https://github.com/ImanCognitiveArch/universalmind-sdk/blob/main/COMMERCIAL-LICENSING.md"
+
+[project.scripts]
+universalmind = "universalmind.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["universalmind*"]
+
+[tool.setuptools.package-data]
+universalmind = ["static/*.html"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
