@@ -2,7 +2,7 @@
 
 from fastapi.testclient import TestClient
 
-from universalmind.api import app, engine
+from vetolatch.api import app, engine
 
 
 client = TestClient(app)

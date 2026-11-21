@@ -1,5 +1,5 @@
 """
-UniversalMind human-governance engine.
+VetoLatch human-governance engine.
 
 ROLE
 ----
@@ -182,3 +182,4 @@ class GovernanceEngine:
     def audit(self, review_id: str) -> list[dict[str, Any]]:
         self.get_review(review_id)
         return self.ledger.for_review(review_id)
+

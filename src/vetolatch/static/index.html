@@ -3,23 +3,23 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>UniversalMind Governance Workbench</title>
+<title>VetoLatch Governance Workbench</title>
 <style>
 :root{font-family:Inter,system-ui,sans-serif;color:#111827;background:#f8fafc}body{max-width:980px;margin:0 auto;padding:40px 20px}.hero{margin-bottom:28px}.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:#475569}h1{font-size:42px;line-height:1.05;margin:8px 0}.sub{font-size:18px;color:#475569;max-width:760px}.card{background:white;border:1px solid #e2e8f0;border-radius:16px;padding:22px;margin:18px 0;box-shadow:0 8px 28px rgba(15,23,42,.05)}textarea,input{width:100%;box-sizing:border-box;border:1px solid #cbd5e1;border-radius:10px;padding:12px;font:inherit}textarea{min-height:120px}button{border:0;border-radius:10px;padding:11px 16px;font-weight:700;cursor:pointer;margin-right:8px}.primary{background:#111827;color:white}.approve{background:#dcfce7;color:#166534}.reject{background:#fee2e2;color:#991b1b}.badge{display:inline-block;padding:5px 9px;border-radius:999px;background:#fef3c7;color:#92400e;font-weight:700;font-size:13px}pre{white-space:pre-wrap;word-break:break-word;background:#0f172a;color:#e2e8f0;padding:16px;border-radius:12px;overflow:auto}.muted{color:#64748b;font-size:14px}.hidden{display:none}.boundary{border-left:4px solid #111827;padding-left:14px;font-weight:650}</style>
 </head>
 <body>
 <section class="hero">
-<div class="eyebrow">UniversalMind · Human-governed action boundary</div>
+<div class="eyebrow">UniversalMind Â· Human-governed action boundary</div>
 <h1>AI may propose.<br>Humans retain authority.</h1>
 <p class="sub">A local reference workbench for creating a proposal, forcing a <code>pending_human</code> boundary, and issuing an auditable approval or rejection receipt. This SDK does not execute the external action.</p>
 </section>
 <div class="card">
-<h2>1 · Proposed action</h2>
+<h2>1 Â· Proposed action</h2>
 <textarea id="proposal" placeholder="Example: Refund $4,500 to customer #8841 after a duplicate billing investigation."></textarea>
 <p><button class="primary" onclick="createReview()">Create governed review</button></p>
 </div>
 <div id="reviewCard" class="card hidden">
-<h2>2 · Human decision boundary</h2>
+<h2>2 Â· Human decision boundary</h2>
 <p class="boundary">Dispatch remains unauthorized until an explicit human approval.</p>
 <p>Status: <span id="status" class="badge"></span></p>
 <p class="muted">review_id: <code id="reviewId"></code><br>action_id: <code id="actionId"></code></p>
@@ -27,7 +27,7 @@
 <p><button class="approve" onclick="decide('approve')">Approve</button><button class="reject" onclick="decide('reject')">Reject</button></p>
 </div>
 <div id="receiptCard" class="card hidden">
-<h2>3 · Governance receipt</h2>
+<h2>3 Â· Governance receipt</h2>
 <pre id="receipt"></pre>
 <p><button onclick="loadAudit()">Show audit events</button></p>
 <pre id="audit" class="hidden"></pre>
@@ -41,3 +41,4 @@ function render(data){document.getElementById('status').textContent=data.status;
 </script>
 </body>
 </html>
+

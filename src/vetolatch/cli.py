@@ -1,5 +1,5 @@
 """
-UniversalMind public SDK CLI.
+VetoLatch public SDK CLI.
 
 ROLE
 ----
@@ -27,7 +27,7 @@ LOOPBACK_HOSTS = {"127.0.0.1", "localhost", "::1"}
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="universalmind",
+        prog="vetolatch",
         description="Human-governed approval and audit boundaries for AI agents.",
     )
     sub = parser.add_subparsers(dest="command", required=True)
@@ -40,7 +40,7 @@ def build_parser() -> argparse.ArgumentParser:
 
 
 def command_info() -> int:
-    print(f"UniversalMind Governance SDK {__version__}")
+    print(f"VetoLatch {__version__}")
     print("Boundary: AI may propose; a human retains state-changing authority.")
     print("Execution: this SDK authorizes/denies dispatch but never performs it.")
     print("License: Business Source License 1.1 (source-available, non-production by default).")
@@ -52,8 +52,8 @@ def command_doctor() -> int:
     checks.append(("python", sys.version_info >= (3, 10), sys.version.split()[0]))
 
     try:
-        module = importlib.import_module("universalmind.api")
-        checks.append(("api", hasattr(module, "app"), "universalmind.api:app"))
+        module = importlib.import_module("vetolatch.api")
+        checks.append(("api", hasattr(module, "app"), "vetolatch.api:app"))
     except Exception as exc:
         checks.append(("api", False, f"{type(exc).__name__}: {exc}"))
 
@@ -63,7 +63,7 @@ def command_doctor() -> int:
     ok = all(passed for _, passed, _ in checks)
     for name, passed, detail in checks:
         print(f"[{'PASS' if passed else 'FAIL'}] {name}: {detail}")
-    print(f"UniversalMind doctor: {'PASS' if ok else 'FAIL'}")
+    print(f"VetoLatch doctor: {'PASS' if ok else 'FAIL'}")
     return 0 if ok else 1
 
 
@@ -80,7 +80,7 @@ def command_serve(host: str, port: int) -> int:
 
     import uvicorn
 
-    uvicorn.run("universalmind.api:app", host=host, port=port, reload=False)
+    uvicorn.run("vetolatch.api:app", host=host, port=port, reload=False)
     return 0
 
 
@@ -93,3 +93,4 @@ def main(argv: list[str] | None = None) -> int:
     if args.command == "serve":
         return command_serve(args.host, args.port)
     return 2
+

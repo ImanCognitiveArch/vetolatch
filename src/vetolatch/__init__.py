@@ -1,5 +1,5 @@
 """
-UniversalMind Public Governance SDK.
+VetoLatch Public Governance SDK.
 
 ROLE
 ----
@@ -12,3 +12,4 @@ __version__ = "0.4.0a1"
 from .governance import GovernanceEngine, GovernanceError, ReviewRecord
 
 __all__ = ["GovernanceEngine", "GovernanceError", "ReviewRecord", "__version__"]
+

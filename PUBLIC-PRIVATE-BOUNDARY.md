@@ -1,10 +1,10 @@
-# UniversalMind Public / Private Boundary
+# VetoLatch / UniversalMind Public-Private Boundary
 
-## Public Governance SDK
+## Public: VetoLatch
 
-The public package is a standalone reference implementation of one contract:
+VetoLatch is a standalone reference implementation of one governance contract:
 
-`proposal -> pending_human -> approve/reject -> outcome -> audit receipt`
+`proposal -> pending_human -> approve/reject -> outcome -> audit events`
 
 It may include:
 
@@ -15,7 +15,7 @@ It may include:
 - non-cryptographic local audit events;
 - integration schemas and documentation.
 
-## Private UniversalMind Core
+## Private: UniversalMind Core
 
 The following remain outside the public repository and package:
 
@@ -28,7 +28,7 @@ The following remain outside the public repository and package:
 
 ## Dependency direction
 
-The public SDK MUST NOT import from the private Core.
+VetoLatch MUST NOT import from the private UniversalMind Core.
 
 Private integrations may depend on the public governance protocol, but the public package must remain independently installable and testable.
 

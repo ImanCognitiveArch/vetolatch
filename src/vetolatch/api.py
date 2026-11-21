@@ -1,5 +1,5 @@
 """
-UniversalMind standalone local API.
+VetoLatch standalone local API.
 
 ROLE
 ----
@@ -33,7 +33,7 @@ from .schemas import (
 
 engine = GovernanceEngine()
 app = FastAPI(
-    title="UniversalMind Governance SDK",
+    title="VetoLatch",
     version=__version__,
     description=(
         "Human-governed approval and audit boundary for proposed AI-agent actions. "
@@ -121,3 +121,4 @@ def audit_review(review_id: str) -> AuditResponse:
         return AuditResponse(review_id=review_id, events=engine.audit(review_id))
     except GovernanceError as exc:
         raise _governance_error(exc) from exc
+

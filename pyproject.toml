@@ -3,7 +3,7 @@ requires = ["setuptools>=77.0.3", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "universalmind"
+name = "vetolatch"
 version = "0.4.0a1"
 description = "Human-governed approval and audit boundaries for AI agent actions."
 readme = "README.md"
@@ -40,22 +40,22 @@ dev = [
 
 [project.urls]
 Homepage = "https://imancognitivearch.github.io/universalmind-showcase/"
-Documentation = "https://github.com/ImanCognitiveArch/universalmind-sdk"
-Repository = "https://github.com/ImanCognitiveArch/universalmind-sdk"
-"Commercial Licensing" = "https://github.com/ImanCognitiveArch/universalmind-sdk/blob/main/COMMERCIAL-LICENSING.md"
+Documentation = "https://github.com/ImanCognitiveArch/vetolatch"
+Repository = "https://github.com/ImanCognitiveArch/vetolatch"
+"Commercial Licensing" = "https://github.com/ImanCognitiveArch/vetolatch/blob/main/COMMERCIAL-LICENSING.md"
 
 [project.scripts]
-universalmind = "universalmind.cli:main"
+vetolatch = "vetolatch.cli:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}
 
 [tool.setuptools.packages.find]
 where = ["src"]
-include = ["universalmind*"]
+include = ["vetolatch*"]
 
 [tool.setuptools.package-data]
-universalmind = ["static/*.html"]
+vetolatch = ["static/*.html"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

@@ -1,5 +1,5 @@
 """
-UniversalMind public API schemas.
+VetoLatch public API schemas.
 
 ROLE
 ----
@@ -45,3 +45,4 @@ class ReviewResponse(BaseModel):
 class AuditResponse(BaseModel):
     review_id: str
     events: list[dict[str, Any]]
+

@@ -2,7 +2,7 @@
 
 ## Current security boundary
 
-The first public UniversalMind Governance SDK is a local reference implementation. It has no authentication and must remain bound to a loopback interface (`127.0.0.1`, `localhost`, or `::1`).
+The first public VetoLatch SDK is a local reference implementation. It has no authentication and must remain bound to a loopback interface (`127.0.0.1`, `localhost`, or `::1`).
 
 Do not expose the built-in server to a public network.
 

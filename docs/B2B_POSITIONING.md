@@ -1,4 +1,4 @@
-# UniversalMind — B2B Positioning Draft
+# UniversalMind â€” B2B Positioning Draft
 
 ## Category
 
@@ -8,7 +8,7 @@ Human-governed approval and audit boundary for AI-agent actions.
 
 **AI may propose. Humans retain authority.**
 
-UniversalMind places an explicit `pending_human` gate between an AI-generated proposal and a consequential state-changing action. It creates stable review/action identities, records the human decision, and preserves an auditable local event history without pretending that recommendation equals authority.
+VetoLatch places an explicit `pending_human` gate between an AI-generated proposal and a consequential state-changing action. It creates stable review/action identities, records the human decision, and preserves an auditable local event history without pretending that recommendation equals authority.
 
 ## The business problem
 
@@ -20,7 +20,7 @@ An AI agent can be excellent at reasoning and still be unacceptable in productio
 - Which proposal did the human actually approve?
 - What outcome was observed afterward?
 
-UniversalMind turns those questions into an explicit software contract.
+VetoLatch turns those questions into an explicit software contract.
 
 ## Initial buyer hypotheses
 
@@ -35,7 +35,7 @@ Avoid marketing the first release as a clinical, safety-critical, compliance-cer
 
 ## Commercial wedge
 
-**Architecture Pilot — 2 weeks**
+**Architecture Pilot â€” 2 weeks**
 
 Map one existing agent workflow, place the governance boundary immediately before one state-changing adapter, instrument review/action/outcome identity, and leave the customer's execution system responsible for the actual action.
 

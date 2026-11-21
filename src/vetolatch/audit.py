@@ -1,5 +1,5 @@
 """
-UniversalMind audit primitives.
+VetoLatch audit primitives.
 
 ROLE
 ----
@@ -62,3 +62,4 @@ class AuditLedger:
     def all_events(self) -> list[dict[str, Any]]:
         with self._lock:
             return [asdict(event) for event in self._events]
+

@@ -2,7 +2,7 @@
 
 import pytest
 
-from universalmind import GovernanceEngine, GovernanceError
+from vetolatch import GovernanceEngine, GovernanceError
 
 
 def test_review_starts_pending_and_unauthorized():
