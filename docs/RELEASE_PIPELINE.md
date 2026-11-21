@@ -1,78 +1,79 @@
 # VetoLatch release pipeline
 
-Updated: 2026-11-21. Candidate: 0.4.0a1.
+Updated: 2026-11-21. Evaluation version: `0.4.0a1`.
 
-## Verified engineering state
+## Current position
 
-- Existing GitHub CI at be3d1fd passed; repository is private staging.
-- Added example-local `@veto_gate` around a standard function-call payload.
-- External execution is disposable in-memory SQLite; the SDK never executes tools.
-- 23 local tests passed, including rejection/default-deny, approved arguments,
-  stable audit identity, real SQL dispatch, and scanner negative controls.
-- Wheel and sdist built; both passed `twine check`.
-- Built-distribution scanner reported `FORBIDDEN=[]`.
-- Publish workflows now require tests and artifact boundary checks before upload.
-- Live test/boundary badges are present; PyPI version badge awaits actual release.
-- No changes to `src/vetolatch/` or the private UniversalMind Core.
+**TestPyPI publication and independent installation are complete.**
+Next: one independent evaluation of the install/review/audit flow, then deliberate
+closure of the existing public PyPI/repository release gates.
 
-## Publishing identity (exact match required)
+| Stage | State | Evidence |
+| --- | --- | --- |
+| Public/private SDK isolation | Passed | Source unchanged; scoped artifact checks passed |
+| Python tests | Passed | 23 tests; GitHub matrix 3.10, 3.11, 3.12 green |
+| Wheel and sdist validation | Passed | build, twine check, FORBIDDEN=[] |
+| TestPyPI OIDC publication | Passed | Run 44941251525, attempt 2 |
+| Independent TestPyPI installation | Passed | Fresh Python 3.11 venv, no wheel cache, registry-origin digest verified |
+| Dependency consistency and CLI | Passed | pip check and vetolatch doctor |
+| Installed approval/rejection/audit behavior | Passed | Pending denies; explicit approval authorizes; final decision protected; IDs stable |
+| Account 2FA | Owner confirmed complete | New keys on both registries; no secrets recorded |
+| PyPI publisher registration | Configured | Owner screenshot: release.yml, environment pypi |
+| Public PyPI release | Pending | Not triggered by the TestPyPI rehearsal |
+| Repository visibility | Private staging | No visibility change |
+
+## Exact publisher identities
 
 | Registry | Project | Owner | Repository | Workflow filename | Environment |
 | --- | --- | --- | --- | --- | --- |
 | TestPyPI | vetolatch | ImanCognitiveArch | vetolatch | testpypi.yml | testpypi |
 | PyPI | vetolatch | ImanCognitiveArch | vetolatch | release.yml | pypi |
 
-GitHub environments `testpypi` and `pypi` already exist.
-Trusted Publishers belong in each registry account's Publishing page.
-For a new project, add a pending publisher. Do not enter the full workflow path
-in the workflow filename field. Authentication uses OIDC, never a saved API token.
+The initial TestPyPI attempt failed with `invalid-publisher`. After the account
+owner registered the matching publisher, only the failed publish job was rerun.
+Attempt 2 successfully published the already-tested implementation commit
+`7b7530b035f0557583dc6a6d2503e9f774467bcf`.
 
-## Pending evidence
+- Publication: https://github.com/ImanCognitiveArch/vetolatch/actions/runs/44941251525
+- Implementation tests: https://github.com/ImanCognitiveArch/vetolatch/actions/runs/44941250766
+- Implementation boundary check: https://github.com/ImanCognitiveArch/vetolatch/actions/runs/44941250779
+- Package: https://test.pypi.org/project/vetolatch/0.4.0a1/
 
-1. Account owner completes/validates 2FA separately on both registries.
-   Screenshots show a setup form, not proof of completed activation.
-   Replace the authenticator secrets shown in shared setup screenshots; do not
-   put QR codes, provisioning keys, recovery codes or credentials in Git.
-2. Register/verify the exact TestPyPI pending publisher.
-3. Run `testpypi.yml`; confirm successful OIDC upload.
-4. Install from TestPyPI into a fresh environment and run `vetolatch doctor`.
-5. Close existing public-release license/IP/brand gates deliberately.
-6. Publish approved release to PyPI, verify independent installation, then add
-   the live PyPI version badge and update the quickstart.
+## Independent installation evidence
 
-The current cloud browser has reached TestPyPI's sign-in page; it does not share
-the Windows browser's authenticated session. Registry completion remains blocked
-on account access, not on a request to provide passwords or OTPs in chat.
-Public PyPI publication and repository visibility are separate from this TestPyPI rehearsal.
+A new Python 3.11.9 virtual environment downloaded the wheel directly from
+TestPyPI using `pip install --no-cache-dir --no-deps --index-url
+https://test.pypi.org/simple/ vetolatch==0.4.0a1`.
+Declared dependencies were fetched separately from the primary PyPI index;
+no mixed-index dependency lookup was needed. The first dependency-resolution
+attempt failed; a retry against primary PyPI succeeded without changing requirements.
+
+The pip installation report identified `test-files.pythonhosted.org` as the
+wheel source. Its SHA-256 matched the registry's version JSON:
+
+`57e0d751db87d81e09cbfeff8292efdde88583384505a88d44e9b56b794ff6b4`
+
+The import resolved from the new environment's `site-packages`, not an editable
+checkout. `pip check` and `vetolatch doctor` passed. A smoke check against the
+installed package verified pending/default-deny, explicit approval, rejection,
+final-decision protection, stable review/action identity, and outcome/audit events.
+
+The local machine-readable installation report and digest check are kept under
+the repository's ignored `.git/testpypi-install-proof-20261121/` directory.
+This report contains the durable, non-secret evidence needed to repeat the check.
+
+## Next release gates
+
+1. Use `docs/INDEPENDENT_EVALUATION.md` for one external non-production review.
+   Collect installation friction, clarity of pending/approve/reject, and audit identity.
+2. Deliberately close the existing license/IP, brand, visibility, and final
+   release-tag gates in `RELEASE-GATE.md`; do not imply legal clearance.
+3. Publish the approved PyPI release using `release.yml`, then verify a fresh
+   installation from primary PyPI and add the live PyPI version badge.
 
 ## Continuation contract
 
 Preserve UniversalMind's architecture freeze, Golden Baseline, Cognitive Bus,
 human authority, stable review_id/action_id, licensing and independent Git history.
-Keep the example decorator outside the SDK. Do not add model providers, change
-the AI model, connect production tools or expand the research runtime for this release.
-
-## Fresh local wheel installation
-
-A fresh Python 3.11 virtual environment installed the built wheel successfully.
-`vetolatch doctor` passed; import resolved from that environment's site-packages
-and reported version `0.4.0a1`, not the editable source checkout.
-
-## Observed GitHub results for implementation commit 7b7530b
-
-- Tests passed on Python 3.10, 3.11 and 3.12:
-  https://github.com/ImanCognitiveArch/vetolatch/actions/runs/44941250766
-- Core boundary workflow passed:
-  https://github.com/ImanCognitiveArch/vetolatch/actions/runs/44941250779
-- TestPyPI rehearsal was actually dispatched:
-  https://github.com/ImanCognitiveArch/vetolatch/actions/runs/44941251525
-  Its build, tests, distribution validation and boundary inspection passed.
-  Upload stopped with `invalid-publisher`: valid OIDC token, no matching publisher.
-  This establishes a registry identity/configuration blocker, not a package build failure.
-- Secure TestPyPI sign-in reached a username validation error: use the account's
-  username, not its email address. No completed signed-in state was observed.
-
-Next action: account owner completes authentication/credential setup, then verifies
-or registers the exact TestPyPI publisher from the table above. Rerun the failed
-publish job and perform the TestPyPI clean-install rehearsal. Do not mark either
-registry upload or TestPyPI installation as successful before observing them.
+Keep the example decorator outside the SDK. Do not change the AI model, add
+model providers, connect production tools, or expand the research runtime here.

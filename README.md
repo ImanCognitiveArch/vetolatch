@@ -2,8 +2,10 @@
 
 [![Tests](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/test.yml)
 [![Core boundary checks](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/boundary.yml/badge.svg?branch=main)](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/boundary.yml)
+[![TestPyPI publishing](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/testpypi.yml/badge.svg)](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/testpypi.yml)
 
-**Release candidate: `0.4.0a1`.** Public PyPI publication is pending. A live PyPI
+**Evaluation release: `0.4.0a1` on [TestPyPI](https://test.pypi.org/project/vetolatch/0.4.0a1/).**
+OIDC publication and fresh installation passed. Public PyPI publication is pending. A live PyPI
 version badge will be added after the package actually exists there. This
 repository remains private staging; workflow badges require repository access.
 The boundary check reports `FORBIDDEN=[]` only when its wheel/sdist checks pass;
@@ -45,8 +47,10 @@ The invariant is deliberately simple:
 ## 30-second quickstart
 
 ```bash
-# From the reviewed source checkout (public PyPI release pending):
-python -m pip install .
+# In a fresh virtual environment; dependencies from primary PyPI:
+python -m pip install --index-url https://pypi.org/simple "fastapi>=0.127,<1.0" "pydantic>=2.10,<3.0" "uvicorn>=0.40,<1.0"
+# The exact evaluation release from TestPyPI:
+python -m pip install --no-cache-dir --no-deps --index-url https://test.pypi.org/simple/ "vetolatch==0.4.0a1"
 vetolatch doctor
 ```
 
@@ -185,6 +189,11 @@ VetoLatch is distributed under **Business Source License 1.1 (BUSL-1.1)**.
 - The BSL's earlier-fourth-anniversary rule still applies.
 
 Read `LICENSE` and `COMMERCIAL-LICENSING.md` before use.
+
+## Independent evaluation
+
+See [the ten-minute evaluation guide](docs/INDEPENDENT_EVALUATION.md) for installation,
+Workbench checks, and a short feedback checklist. No model API key is needed.
 
 ## Feedback
 

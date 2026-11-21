@@ -5,7 +5,7 @@
 - [x] Public package imports no private UniversalMind Core modules.
 - [x] Private-Core markers are rejected by the distribution-boundary tests.
 - [x] Clean install from the built wheel passes `vetolatch doctor`.
-- [x] The example performs no real external action.
+- [x] Examples perform no persistent or production external action (SQLite is in-memory).
 - [x] Public repository has independent Git history from the private Core.
 
 ## Package quality
@@ -14,7 +14,7 @@
 - [x] Wheel and sdist build cleanly.
 - [x] `twine check` passes.
 - [x] Wheel content inspected for private-Core leakage.
-- [ ] TestPyPI clean-install rehearsal completed.
+- [x] TestPyPI clean-install rehearsal completed.
 - [ ] Public PyPI clean-install rehearsal completed.
 
 ## Brand / legal
@@ -26,14 +26,19 @@
 
 ## Accounts / publishing
 
-- [ ] TestPyPI account verified and 2FA enabled.
-- [ ] PyPI account verified and 2FA enabled.
-- [ ] Trusted Publishing or API-token publishing configured.
+- [x] TestPyPI account verified and 2FA enabled.
+- [x] PyPI account verified and 2FA enabled.
+- [x] Trusted Publishing or API-token publishing configured.
 - [ ] GitHub repository `ImanCognitiveArch/vetolatch` reviewed before visibility is changed.
 - [ ] Final release tag/version approved.
 
 ## Current posture
 
-Engineering candidate: `0.4.0a1`.
+TestPyPI evaluation release: `0.4.0a1`; OIDC publication and independent registry installation passed.
+
+Account 2FA was confirmed by the owner after key replacement. Both publisher
+registrations were shown in account screenshots; the TestPyPI OIDC identity was
+additionally verified by successful publication. Primary PyPI publication remains untested.
+See `docs/RELEASE_PIPELINE.md` for evidence.
 
 Do not make the GitHub repository public and do not publish to public PyPI until the remaining unchecked legal/account/release gates are deliberately closed.
