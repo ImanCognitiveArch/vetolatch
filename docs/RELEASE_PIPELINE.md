@@ -57,3 +57,22 @@ the AI model, connect production tools or expand the research runtime for this r
 A fresh Python 3.11 virtual environment installed the built wheel successfully.
 `vetolatch doctor` passed; import resolved from that environment's site-packages
 and reported version `0.4.0a1`, not the editable source checkout.
+
+## Observed GitHub results for implementation commit 7b7530b
+
+- Tests passed on Python 3.10, 3.11 and 3.12:
+  https://github.com/ImanCognitiveArch/vetolatch/actions/runs/44941250766
+- Core boundary workflow passed:
+  https://github.com/ImanCognitiveArch/vetolatch/actions/runs/44941250779
+- TestPyPI rehearsal was actually dispatched:
+  https://github.com/ImanCognitiveArch/vetolatch/actions/runs/44941251525
+  Its build, tests, distribution validation and boundary inspection passed.
+  Upload stopped with `invalid-publisher`: valid OIDC token, no matching publisher.
+  This establishes a registry identity/configuration blocker, not a package build failure.
+- Secure TestPyPI sign-in reached a username validation error: use the account's
+  username, not its email address. No completed signed-in state was observed.
+
+Next action: account owner completes authentication/credential setup, then verifies
+or registers the exact TestPyPI publisher from the table above. Rerun the failed
+publish job and perform the TestPyPI clean-install rehearsal. Do not mark either
+registry upload or TestPyPI installation as successful before observing them.
