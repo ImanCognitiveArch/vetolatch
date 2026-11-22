@@ -22,7 +22,8 @@ has been counted merely because the package shipped.
 | Demo and brief | Prepared | docs/demo.gif, MP4 and updated ten-page PDF |
 | External evaluators | 0 of target 3 | Awaiting real external feedback |
 | Paid pilots | 0 of target 1 | Discovery target, not an achieved sale |
-| LinkedIn | Pending | Copy and demo prepared; signed-in account required |
+| LinkedIn | Published and verified | Live video post: https://lnkd.in/p/e2XQd-Zk |
+| Evaluator invitations | Scheduled | Up to 10 relevant free DMs, 2026-11-23 10:00 America/New_York |
 
 ## Verified release links
 
@@ -72,11 +73,22 @@ authentication, authorization, protected state and external execution.
 ## Next actions
 
 1. Use docs/INDEPENDENT_EVALUATION.md to invite genuine external evaluation.
-2. Publish the prepared LinkedIn demo/copy once account access is completed.
-3. Send individually relevant evaluator invitations, then count actual results.
+2. Review responses to the published LinkedIn demo/copy: https://lnkd.in/p/e2XQd-Zk
+3. Execute the scheduled individual evaluator invitations, then count actual results.
 4. Scope one paid pilot around a single workflow only after a discovery conversation.
 
 Owner authorized the public alpha on 2026-11-22. BUSL-1.1 remains in effect.
 Publication does not assert formal trademark clearance or a legal/security certification.
 UniversalMind's architecture freeze, Golden Baseline, Cognitive Bus and private
 research hold remain unchanged. No AI-model changes were made.
+
+## Outreach delivery preparation
+
+The three professor drafts contain the current ten-page VetoLatch PDF and live
+GitHub/PyPI links. Sending is scheduled via ChatGPT Automations, not Gmail's
+native Scheduled folder. On 2026-11-23, Scheutz and Huang are scheduled for
+09:15 America/New_York; Admoni for 09:35. Actual delivery remains a future check.
+
+The updated public source commit 7cc9bc0 passed history and Gitleaks scans:
+9 reachable commits, 76 unique blobs, no detected findings. The public demo
+and PDF are also attached to the v0.4.0a1 GitHub release.

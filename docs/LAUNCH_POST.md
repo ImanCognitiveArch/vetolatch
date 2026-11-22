@@ -1,6 +1,8 @@
 # LinkedIn launch copy
 
-Status: prepared, not published. Account authentication is pending.
+Status: published on 2026-11-22 with the 45-second demo.
+
+Live post: https://lnkd.in/p/e2XQd-Zk
 
 An AI agent can recommend a $4,500 refund. Who authorizes it?
 
@@ -28,7 +30,7 @@ Source-available under BUSL-1.1. Evaluation and production rights follow the inc
 
 ## Evaluator DM template
 
-Status: not sent. Personalize against each recipient's observed work before use.
+Status: not sent today. Up to 10 relevant, individually personalized invitations are scheduled for 2026-11-23 at 10:00 America/New_York. Count actual verified sends separately from completed evaluations.
 
 Hi [Name], I noticed your work on [specific relevant workflow].
 
