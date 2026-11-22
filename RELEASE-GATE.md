@@ -15,7 +15,7 @@
 - [x] `twine check` passes.
 - [x] Wheel content inspected for private-Core leakage.
 - [x] TestPyPI clean-install rehearsal completed.
-- [ ] Public PyPI clean-install rehearsal completed.
+- [x] Public PyPI clean-install rehearsal completed; unqualified pip install, doctor and dependency checks passed.
 
 ## Brand / legal
 
@@ -36,11 +36,11 @@
 
 ## Current posture
 
-TestPyPI evaluation release: `0.4.0a1`; OIDC publication and independent registry installation passed.
+Public PyPI alpha release: `0.4.0a1`; OIDC publication, independent installation and anonymous public source access passed.
 
 Account 2FA was confirmed by the owner after key replacement. Both publisher
 registrations were shown in account screenshots; the TestPyPI OIDC identity was
-additionally verified by successful publication. Primary PyPI publication remains untested.
+additionally verified by successful publication. Primary PyPI OIDC publication and independent installation are now verified.
 See `docs/RELEASE_PIPELINE.md` for evidence.
 
 Public alpha release is authorized. Record primary PyPI installation and public visibility after observing success. Formal legal clearance is not implied by publication.

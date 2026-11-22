@@ -1,0 +1,25 @@
+{
+  "source": "Actual examples/fintech_refund.py stdout",
+  "operator_input": "approve",
+  "mode": "Replay with scripted input",
+  "duration_seconds": 45,
+  "no_bank_api": true,
+  "no_funds_moved": true,
+  "artifacts": [
+    {
+      "path": "docs/demo.gif",
+      "bytes": 136947,
+      "sha256": "fb2dd46ee3d0ad45b1e007f10dc165fec718ded4601b64766faa411643c7b305"
+    },
+    {
+      "path": "docs/VetoLatch_45s_Demo.mp4",
+      "bytes": 406323,
+      "sha256": "ce276f64d5d31706967391ed6f3d5990dc3c52ac27fe7c85d7cdf3abb9bd003b"
+    },
+    {
+      "path": "docs/VetoLatch_Governance_Brief.pdf",
+      "bytes": 474574,
+      "sha256": "736c47b14c77e99ec8ed75559dec0238bba4094d1daeb95addb106746313c037"
+    }
+  ]
+}

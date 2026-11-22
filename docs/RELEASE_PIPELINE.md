@@ -1,79 +1,82 @@
 # VetoLatch release pipeline
 
-Updated: 2026-11-21. Evaluation version: `0.4.0a1`.
+Updated: 2026-11-22. Public alpha: `0.4.0a1`.
 
 ## Current position
 
-**TestPyPI publication and independent installation are complete.**
-Next: one independent evaluation of the install/review/audit flow, then deliberate
-closure of the existing public PyPI/repository release gates.
+**Primary PyPI publication, independent installation and public source access passed.**
+The next milestone is external feedback. No external evaluator or paying customer
+has been counted merely because the package shipped.
 
 | Stage | State | Evidence |
 | --- | --- | --- |
-| Public/private SDK isolation | Passed | Source unchanged; scoped artifact checks passed |
-| Python tests | Passed | 23 tests; GitHub matrix 3.10, 3.11, 3.12 green |
-| Wheel and sdist validation | Passed | build, twine check, FORBIDDEN=[] |
-| TestPyPI OIDC publication | Passed | Run 44941251525, attempt 2 |
-| Independent TestPyPI installation | Passed | Fresh Python 3.11 venv, no wheel cache, registry-origin digest verified |
-| Dependency consistency and CLI | Passed | pip check and vetolatch doctor |
-| Installed approval/rejection/audit behavior | Passed | Pending denies; explicit approval authorizes; final decision protected; IDs stable |
-| Account 2FA | Owner confirmed complete | New keys on both registries; no secrets recorded |
-| PyPI publisher registration | Configured | Owner screenshot: release.yml, environment pypi |
-| Public PyPI release | Pending | Not triggered by the TestPyPI rehearsal |
-| Repository visibility | Private staging | No visibility change |
+| Standalone SDK tests | Passed | 23 tests; CI Python 3.10, 3.11, 3.12 |
+| TestPyPI OIDC rehearsal | Passed | Run 44941251525, attempt 2 |
+| Primary PyPI OIDC publication | Passed | Run 45022350358, release v0.4.0a1 |
+| Fresh primary PyPI install | Passed | Unqualified pip install vetolatch, no wheel cache |
+| CLI and dependency check | Passed | vetolatch doctor and pip check |
+| Installed decision/audit smoke | Passed | Pending, approve/reject, final API decision, stable IDs, outcome events |
+| Public repository | Verified | Anonymous repository API and raw source returned HTTP 200 |
+| History and credential checks | Passed within scope | Release base 1ebc314: 8 commits, 68 unique blobs; no findings |
+| Actions-log credential check | Passed within scope | 17 completed-run logs, no Gitleaks findings |
+| Demo and brief | Prepared | docs/demo.gif, MP4 and updated ten-page PDF |
+| External evaluators | 0 of target 3 | Awaiting real external feedback |
+| Paid pilots | 0 of target 1 | Discovery target, not an achieved sale |
+| LinkedIn | Pending | Copy and demo prepared; signed-in account required |
 
-## Exact publisher identities
+## Verified release links
 
-| Registry | Project | Owner | Repository | Workflow filename | Environment |
-| --- | --- | --- | --- | --- | --- |
-| TestPyPI | vetolatch | ImanCognitiveArch | vetolatch | testpypi.yml | testpypi |
-| PyPI | vetolatch | ImanCognitiveArch | vetolatch | release.yml | pypi |
+- Package: https://pypi.org/project/vetolatch/0.4.0a1/
+- Source: https://github.com/ImanCognitiveArch/vetolatch
+- Release: https://github.com/ImanCognitiveArch/vetolatch/releases/tag/v0.4.0a1
+- Publication workflow: https://github.com/ImanCognitiveArch/vetolatch/actions/runs/45022350358
+- Release CI: https://github.com/ImanCognitiveArch/vetolatch/actions/runs/45022349785
+- Boundary CI: https://github.com/ImanCognitiveArch/vetolatch/actions/runs/45022349694
 
-The initial TestPyPI attempt failed with `invalid-publisher`. After the account
-owner registered the matching publisher, only the failed publish job was rerun.
-Attempt 2 successfully published the already-tested implementation commit
-`7b7530b035f0557583dc6a6d2503e9f774467bcf`.
+## Registry-origin evidence
 
-- Publication: https://github.com/ImanCognitiveArch/vetolatch/actions/runs/44941251525
-- Implementation tests: https://github.com/ImanCognitiveArch/vetolatch/actions/runs/44941250766
-- Implementation boundary check: https://github.com/ImanCognitiveArch/vetolatch/actions/runs/44941250779
-- Package: https://test.pypi.org/project/vetolatch/0.4.0a1/
+A fresh Python 3.11.9 virtual environment installed `vetolatch` directly from
+primary PyPI, without an exact pin or `--pre`. It resolved to `0.4.0a1`.
+The install report identified `files.pythonhosted.org` as the wheel source.
+Its SHA-256 matched primary PyPI's version metadata:
 
-## Independent installation evidence
+`68a948db479028b43cbe9cf59ce3dd6a4eb7691b9ac7227639dc051cbda4aae6`
 
-A new Python 3.11.9 virtual environment downloaded the wheel directly from
-TestPyPI using `pip install --no-cache-dir --no-deps --index-url
-https://test.pypi.org/simple/ vetolatch==0.4.0a1`.
-Declared dependencies were fetched separately from the primary PyPI index;
-no mixed-index dependency lookup was needed. The first dependency-resolution
-attempt failed; a retry against primary PyPI succeeded without changing requirements.
+Imports resolved from the new environment's `site-packages`. Dependency and CLI
+checks passed. The installed package's pending/default-deny, explicit approval,
+rejection, final decision API protection, stable review/action identity and
+outcome/audit events passed smoke checks.
 
-The pip installation report identified `test-files.pythonhosted.org` as the
-wheel source. Its SHA-256 matched the registry's version JSON:
+The primary PyPI wheel differs from the TestPyPI wheel because release
+documentation and the Licensed Work name were updated. Runtime source did not
+change between those releases. A Windows default-text-encoding issue affected
+reading the pip report; the verification resumed with explicit UTF-8 and passed.
 
-`57e0d751db87d81e09cbfeff8292efdde88583384505a88d44e9b56b794ff6b4`
+## Disclosure and trust limits
 
-The import resolved from the new environment's `site-packages`, not an editable
-checkout. `pip check` and `vetolatch doctor` passed. A smoke check against the
-installed package verified pending/default-deny, explicit approval, rejection,
-final-decision protection, stable review/action identity, and outcome/audit events.
+The full reachable release history and tracked source were scanned with
+Gitleaks 8.30.1 after verifying the official release archive checksum. A separate
+blob audit checked private-Core paths/imports, credential patterns, contact
+addresses and local paths. Commit emails use GitHub noreply addresses.
 
-The local machine-readable installation report and digest check are kept under
-the repository's ignored `.git/testpypi-install-proof-20261121/` directory.
-This report contains the durable, non-secret evidence needed to repeat the check.
+These are scoped checks, not a universal proof of zero disclosure. Public
+visibility exposes source, history and Actions logs. Installing this package
+discloses the public SDK source; it does not grant access to the separate private
+UniversalMind Core. No credentials or bridge to that Core are bundled.
 
-## Next release gates
+This alpha is an in-memory reference state machine for a trusted process.
+Caller labels are not authenticated identity. Same-process code can invoke
+decision APIs or mutate returned objects. Production integrators own
+authentication, authorization, protected state and external execution.
 
-1. Use `docs/INDEPENDENT_EVALUATION.md` for one external non-production review.
-   Collect installation friction, clarity of pending/approve/reject, and audit identity.
-2. Deliberately close the existing license/IP, brand, visibility, and final
-   release-tag gates in `RELEASE-GATE.md`; do not imply legal clearance.
-3. Publish the approved PyPI release using `release.yml`, then verify a fresh
-   installation from primary PyPI and add the live PyPI version badge.
+## Next actions
 
-## Continuation contract
+1. Use docs/INDEPENDENT_EVALUATION.md to invite genuine external evaluation.
+2. Publish the prepared LinkedIn demo/copy once account access is completed.
+3. Send individually relevant evaluator invitations, then count actual results.
+4. Scope one paid pilot around a single workflow only after a discovery conversation.
 
-Preserve UniversalMind's architecture freeze, Golden Baseline, Cognitive Bus,
-human authority, stable review_id/action_id, licensing and independent Git history.
-Keep the example decorator outside the SDK. Do not change the AI model, add
-model providers, connect production tools, or expand the research runtime here.
+Owner authorized the public alpha on 2026-11-22. BUSL-1.1 remains in effect.
+Publication does not assert formal trademark clearance or a legal/security certification.
+UniversalMind's architecture freeze, Golden Baseline, Cognitive Bus and private
+research hold remain unchanged. No AI-model changes were made.

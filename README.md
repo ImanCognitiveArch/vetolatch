@@ -1,5 +1,6 @@
 # VetoLatch
 
+[![PyPI version](https://img.shields.io/pypi/v/vetolatch)](https://pypi.org/project/vetolatch/)
 [![Tests](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/test.yml/badge.svg?branch=main)](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/test.yml)
 [![Core boundary checks](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/boundary.yml/badge.svg?branch=main)](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/boundary.yml)
 [![TestPyPI publishing](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/testpypi.yml/badge.svg)](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/testpypi.yml)
@@ -14,6 +15,12 @@ The live boundary workflow checks the documented source and distribution rules.
 > **AI may propose. Humans retain authority.**
 
 **VetoLatch** is a local-first human-approval and governance primitive for AI-agent workflows. It is the public governance boundary extracted from the private **UniversalMind** cognitive-runtime research architecture.
+
+![VetoLatch approval demo](docs/demo.gif)
+
+[45-second MP4](docs/VetoLatch_45s_Demo.mp4) · [Technical brief](docs/VetoLatch_Governance_Brief.pdf)
+
+The demo replays actual example output with scripted operator input. No bank API is called.
 
 ```text
 AI / agent proposal
