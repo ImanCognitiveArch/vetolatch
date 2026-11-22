@@ -1,0 +1,29 @@
+name: Friction log
+description: Report where installation, review, or integration became unclear.
+title: "[Friction] "
+body:
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Python version, OS, VetoLatch version and install command.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: What you expected
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: What happened
+      description: Use synthetic inputs only. Do not include keys, private data or credentials.
+    validations:
+      required: true
+  - type: textarea
+    id: integration
+    attributes:
+      label: Integration question
+      description: Where should this approval boundary sit in your workflow?

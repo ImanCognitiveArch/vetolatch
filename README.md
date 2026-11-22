@@ -4,12 +4,12 @@
 [![Core boundary checks](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/boundary.yml/badge.svg?branch=main)](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/boundary.yml)
 [![TestPyPI publishing](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/testpypi.yml/badge.svg)](https://github.com/ImanCognitiveArch/vetolatch/actions/workflows/testpypi.yml)
 
-**Evaluation release: `0.4.0a1` on [TestPyPI](https://test.pypi.org/project/vetolatch/0.4.0a1/).**
-OIDC publication and fresh installation passed. Public PyPI publication is pending. A live PyPI
-version badge will be added after the package actually exists there. This
-repository remains private staging; workflow badges require repository access.
-The boundary check reports `FORBIDDEN=[]` only when its wheel/sdist checks pass;
-it is not a security certification or proof against every possible disclosure.
+**Alpha evaluation release: `0.4.0a1`.** VetoLatch is source-available under
+BUSL-1.1. Non-production evaluation is permitted under the included terms.
+Production use requires separate permission. See [Licensing](#licensing).
+
+The live boundary workflow checks the documented source and distribution rules.
+`FORBIDDEN=[]` is a scoped test result, not a certification against all disclosure.
 
 > **AI may propose. Humans retain authority.**
 
@@ -47,10 +47,7 @@ The invariant is deliberately simple:
 ## 30-second quickstart
 
 ```bash
-# In a fresh virtual environment; dependencies from primary PyPI:
-python -m pip install --index-url https://pypi.org/simple "fastapi>=0.127,<1.0" "pydantic>=2.10,<3.0" "uvicorn>=0.40,<1.0"
-# The exact evaluation release from TestPyPI:
-python -m pip install --no-cache-dir --no-deps --index-url https://test.pypi.org/simple/ "vetolatch==0.4.0a1"
+python -m pip install vetolatch==0.4.0a1
 vetolatch doctor
 ```
 
@@ -103,11 +100,38 @@ POST /reviews/{review_id}/outcome
 GET  /reviews/{review_id}/audit
 ```
 
+## Trust model
+
+This alpha is an in-memory reference state machine for a trusted local process.
+An explicit decision API call changes governance state. Actor names are
+caller-supplied labels, not authenticated identities. Code with access to the
+same process can call those APIs or mutate returned Python objects.
+
+A production integrator must authenticate the human, restrict decision APIs,
+protect state and bind authorization to the exact action before execution.
+VetoLatch alone is not a security sandbox or a tamper-proof approval service.
+The SDK never executes an external action. Audit events are local and
+non-cryptographic. Server restarts discard the in-memory state.
+
 ## Three hard laws
 
 1. **Proposal is not authority.** Creating a review never authorizes dispatch.
 2. **No autonomous approval path exists in this SDK.** Approval requires an explicit call to the human-decision transition.
 3. **A human decision is final for that review identity.** Approved/rejected reviews cannot be silently overwritten.
+
+## Review lifecycle
+
+```mermaid
+stateDiagram-v2
+    [*] --> pending_human: create proposal
+    pending_human --> approved: explicit approval
+    pending_human --> rejected: explicit rejection
+    approved --> outcome_recorded: report outcome
+    rejected --> outcome_recorded: report closure
+    outcome_recorded --> [*]
+```
+
+The external application owns execution. Both identities stay stable across transitions.
 
 ## Why this exists
 

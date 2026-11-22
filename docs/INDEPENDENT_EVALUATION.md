@@ -11,8 +11,7 @@ Python 3.10 or newer is required. Windows PowerShell:
 ```powershell
 py -3.11 -m venv .venv-vetolatch
 & .\.venv-vetolatch\Scripts\Activate.ps1
-python -m pip install --index-url https://pypi.org/simple "fastapi>=0.127,<1.0" "pydantic>=2.10,<3.0" "uvicorn>=0.40,<1.0"
-python -m pip install --no-cache-dir --no-deps --index-url https://test.pypi.org/simple/ "vetolatch==0.4.0a1"
+python -m pip install --no-cache-dir vetolatch==0.4.0a1
 python -m pip check
 vetolatch doctor
 vetolatch serve
@@ -20,7 +19,7 @@ vetolatch serve
 
 For macOS/Linux, create the environment with `python3 -m venv .venv-vetolatch`
 and activate with `source .venv-vetolatch/bin/activate`; the pip/CLI steps are
-the same. Dependencies come from primary PyPI; only VetoLatch comes from TestPyPI.
+the same. The release and its dependencies install from primary PyPI.
 
 ## Review using the installed Workbench
 
@@ -48,5 +47,5 @@ The Workbench is loopback-only, unauthenticated, and in-memory. Decisions do not
 persist across server restarts. Caller-supplied actor labels are not authenticated
 human identity. The audit history is not a cryptographically immutable ledger.
 
-Reference: https://test.pypi.org/project/vetolatch/0.4.0a1/
+Reference: https://pypi.org/project/vetolatch/0.4.0a1/
 Licensing and public/private boundaries remain as documented in the package.

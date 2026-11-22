@@ -20,17 +20,19 @@
 ## Brand / legal
 
 - [x] Public package/product mark selected: `VetoLatch`.
-- [ ] Formal trademark/legal clearance completed or risk explicitly accepted.
+- [x] Owner explicitly authorized this public alpha release on 2026-11-22.
+- [ ] Formal trademark/legal clearance (not performed or claimed).
 - [x] BUSL-1.1 license text and public/private boundary staged.
-- [ ] Final license/IP review completed before public release.
+- [x] BUSL-1.1 parameters, private-Core exclusion and disclosure limits reviewed for this alpha.
+- [ ] Independent legal/IP opinion (not performed or claimed).
 
 ## Accounts / publishing
 
 - [x] TestPyPI account verified and 2FA enabled.
 - [x] PyPI account verified and 2FA enabled.
 - [x] Trusted Publishing or API-token publishing configured.
-- [ ] GitHub repository `ImanCognitiveArch/vetolatch` reviewed before visibility is changed.
-- [ ] Final release tag/version approved.
+- [x] All reachable Git history reviewed before public visibility: 7 commits, 63 blobs; Gitleaks found no leaks.
+- [x] Owner authorized version 0.4.0a1 for primary PyPI and public source.
 
 ## Current posture
 
@@ -41,4 +43,4 @@ registrations were shown in account screenshots; the TestPyPI OIDC identity was
 additionally verified by successful publication. Primary PyPI publication remains untested.
 See `docs/RELEASE_PIPELINE.md` for evidence.
 
-Do not make the GitHub repository public and do not publish to public PyPI until the remaining unchecked legal/account/release gates are deliberately closed.
+Public alpha release is authorized. Record primary PyPI installation and public visibility after observing success. Formal legal clearance is not implied by publication.
